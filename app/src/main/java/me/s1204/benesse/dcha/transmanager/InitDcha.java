@@ -1,4 +1,4 @@
-package me.s1204.benesse.dcha.e;
+package me.s1204.benesse.dcha.transmanager;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -26,9 +26,10 @@ public class InitDcha extends Activity {
     protected static final String UTIL_SRV = UTIL_PKG + ".DchaUtilService";
     protected static final String BACK_NOVA = ".BackNova";
     protected static final String NOVA_PKG = "com.teslacoilsw.launcher";
-    protected static final String NovaLauncher = NOVA_PKG + ".NovaLauncher";
-    protected static final String TouchHomeLauncher = "jp.co.benesse.touch.allgrade.b003.touchhomelauncher";
-    protected static final String HomeLauncherActivity = TouchHomeLauncher + ".HomeLauncherActivity";
+    protected static final String NOVA_HOME = NOVA_PKG + ".NovaLauncher";
+    protected static final String TOUCH_HOME_SHO_PKG = "jp.co.benesse.touch.allgrade.b003.touchhomelauncher";
+    protected static final String TOUCH_HOME_SHO_HOME = TOUCH_HOME_SHO_PKG + ".HomeLauncherActivity";
+    protected static final String BC_COMPATSCREEN = "bc:compatscreen";
 
     protected static IDchaService mDchaService = null;
     protected static IDchaUtilService mUtilService = null;
@@ -36,7 +37,7 @@ public class InitDcha extends Activity {
     protected static Toast toast;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (checkPermission(this)) return;
 
@@ -45,7 +46,8 @@ public class InitDcha extends Activity {
             public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
                 mUtilService = IDchaUtilService.Stub.asInterface(iBinder);
                 try {
-                    mUtilService.setForcedDisplaySize(1280, 800);
+                    int[] lcdSize = mUtilService.getLcdSize();
+                    mUtilService.setForcedDisplaySize(lcdSize[0], lcdSize[1]);
                 } catch (RemoteException ignored) {
                 }
                 unbindService(this);
@@ -68,8 +70,8 @@ public class InitDcha extends Activity {
                     mDchaService.setSetupStatus(3);
                     mDchaService.hideNavigationBar(true);
                     mDchaService.clearDefaultPreferredApp(NOVA_PKG);
-                    mDchaService.setDefaultPreferredHomeApp(TouchHomeLauncher);
-                    mDchaService.removeTask(null);
+                    mDchaService.setDefaultPreferredHomeApp(TOUCH_HOME_SHO_PKG);
+                    //mDchaService.removeTask(null);
                 } catch (RemoteException ignored) {
                 }
                 unbindService(this);
@@ -84,13 +86,10 @@ public class InitDcha extends Activity {
             return;
         }
 
-        makeText(this, R.string.start_dcha);
-
         try {
-            startActivity(new Intent(Intent.ACTION_MAIN).setClassName(TouchHomeLauncher, HomeLauncherActivity));
+            startActivity(new Intent(Intent.ACTION_MAIN).setClassName(TOUCH_HOME_SHO_PKG, TOUCH_HOME_SHO_HOME).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            makeText(this, R.string.start_dcha);
         } catch (ActivityNotFoundException e) {
-            //noinspection CallToPrintStackTrace
-            e.printStackTrace();
             makeText(this, R.string.fail_dcha);
         }
         finish();
@@ -98,7 +97,6 @@ public class InitDcha extends Activity {
 
     protected static boolean checkPermission(Context context) {
         if (context instanceof Activity activity) {
-            //activity.startService(new Intent(activity, AccessibilityService.class));
             try {
                 if (!(Settings.Secure.getString(activity.getContentResolver(), Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES)).contains(activity.getPackageName())) {
                     makeText(activity, R.string.enable_service);

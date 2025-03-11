@@ -1,4 +1,4 @@
-package me.s1204.benesse.dcha.e;
+package me.s1204.benesse.dcha.transmanager;
 
 import android.app.Activity;
 import android.content.ComponentName;
@@ -11,12 +11,12 @@ import android.os.RemoteException;
 
 import jp.co.benesse.dcha.dchaservice.IDchaService;
 
-import static me.s1204.benesse.dcha.e.InitDcha.*;
+import static me.s1204.benesse.dcha.transmanager.InitDcha.*;
 
 public class Reboot extends Activity {
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         InitDcha.checkPermission(this);
 

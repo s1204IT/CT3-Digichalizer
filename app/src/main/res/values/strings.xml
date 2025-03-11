@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">CT3 Digichalizer</string>
+    <string name="app_name" translatable="false">DchaTransManager</string>
     <string name="app_description">チャレンジタッチ契約者向け学習環境補助アプリ</string>
     <string name="nova_launcher" translatable="false">Nova Launcher</string>
     <string name="nova_description">Nova Launcher を起動します</string>

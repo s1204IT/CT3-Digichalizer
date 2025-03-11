@@ -7,4 +7,4 @@
     android:canRetrieveWindowContent="false"
     android:description="@string/service_description"
     android:notificationTimeout="10000"
-    android:settingsActivity="me.s1204.benesse.dcha.e.BackNova" />
+    android:settingsActivity="me.s1204.benesse.dcha.transmanager.BackNova" />

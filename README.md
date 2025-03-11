@@ -1,4 +1,4 @@
-# CT3用 Digichalizer
+# DchaTransManager
 
 チャレンジタッチ契約者用改造補助アプリ
 
@@ -6,13 +6,22 @@
 
 ### インストール
 
-1. [**ここ**](https://github.com/s1204IT/CT3-Digichalizer/releases/latest/)からAPKをダウンロード
+1. [**ここ**](https://github.com/s1204IT/DchaTransManager/releases/latest/)からAPKをダウンロード
 2. ADB経由でインストール
    ```
-   adb install -r -g -i jp.co.benesse.dcha.dchaservice CT3-Digichalizer.apk
+   adb install -r -g -i jp.co.benesse.dcha.dchaservice DchaTransManager-v4.0.0.apk
    ```
+   ファイル名はバージョンに応じて変更してください
 
 ---
+
+> [!NOTE]
+> 小学講座のみ対応しています
+
+### 検証済み端末
+
+- チャレンジパッド３・02.05.000・小学講座
+- チャレンジパッドNext・01.03.000・小学講座
 
 ### 最初の設定
 

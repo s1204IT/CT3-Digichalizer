@@ -1,4 +1,4 @@
-package me.s1204.benesse.dcha.e;
+package me.s1204.benesse.dcha.transmanager;
 
 import android.content.Intent;
 import android.view.KeyEvent;

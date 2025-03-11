@@ -3,24 +3,24 @@ plugins {
 }
 
 android {
-    namespace 'me.s1204.benesse.dcha.e'
-    compileSdk 35
+    namespace = 'me.s1204.benesse.dcha.transmanager'
+    compileSdk = 35
 
     defaultConfig {
-        minSdk 24
+        minSdk = 24
         //noinspection ExpiredTargetSdkVersion,EditedTargetSdkVersion
-        targetSdk 24
-        versionCode 7
-        versionName "3.0.2"
+        targetSdk = 28
+        versionCode = 8
+        versionName = "4.0.0"
         proguardFiles += 'proguard-rules.pro'
-        multiDexEnabled false
+        multiDexEnabled = false
     }
 
     buildTypes {
-        configureEach.signingConfig signingConfigs.debug
+        configureEach.signingConfig = signingConfigs.debug
         release {
-            minifyEnabled true
-            shrinkResources true
+            minifyEnabled = true
+            shrinkResources = true
         }
     }
 
@@ -30,15 +30,17 @@ android {
     }
 
     buildFeatures {
-        buildConfig false
-        compose false
+        buildConfig = false
+        compose = false
     }
 
     lintOptions {
         ignore 'UnusedResources', 'UnusedAttribute', 'TypographyEllipsis', 'ObsoleteSdkInt', 'StaticFieldLeak'
     }
 }
+
 dependencies {
+    compileOnly files('libs/BenesseExtension.jar')
     implementation files('libs/DchaService.jar')
     implementation files('libs/DchaUtilService.jar')
 }
