@@ -2,6 +2,11 @@
 
 チャレンジタッチ契約者用改造補助アプリ
 
+> [!IMPORTANT]
+> このアプリの機能は、[**CPad Customize Tool**](https://github.com/Kobold831/CPadCustomizeTool) の v2.6.0 で統合されました。  
+> 以降は、カスタマイズツールをお使いください。  
+> ご利用、ありがとうございました。
+
 ---
 
 ### インストール
